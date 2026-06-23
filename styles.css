@@ -397,6 +397,10 @@ p {
   margin-top: 4px;
 }
 
+.hero-actions .button {
+  min-width: 138px;
+}
+
 .hero-badges {
   display: flex;
   flex-wrap: wrap;
@@ -492,65 +496,125 @@ p {
 
 .quick-actions {
   display: grid;
-  grid-template-columns: 0.72fr 1fr;
-  align-items: start;
-  gap: 28px;
-  padding: 34px;
+  grid-template-columns: 0.66fr 1fr;
+  align-items: stretch;
+  gap: 30px;
+  padding: 38px;
+  border: 2px solid rgba(159, 38, 29, 0.14);
   border-radius: var(--radius-xl);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(255, 248, 235, 0.84)),
+    radial-gradient(circle at 85% 10%, rgba(243, 179, 51, 0.34), transparent 22rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 235, 0.92)),
     var(--cream);
-  box-shadow: var(--shadow-soft);
+  box-shadow: 0 26px 80px rgba(99, 21, 15, 0.14);
 }
 
 .quick-actions h2 {
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+}
+
+.quick-actions .lead {
+  color: var(--ink);
+  font-weight: 650;
 }
 
 .action-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
+  gap: 16px;
 }
 
 .action-card {
-  min-height: 136px;
+  position: relative;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 18px;
-  padding: 20px;
-  border: 1px solid rgba(99, 21, 15, 0.13);
+  gap: 22px;
+  overflow: hidden;
+  padding: 22px;
+  border: 2px solid rgba(99, 21, 15, 0.14);
   border-radius: var(--radius-lg);
-  background:
-    radial-gradient(circle at top right, rgba(243, 179, 51, 0.28), transparent 9rem),
-    #ffffff;
-  box-shadow: 0 12px 30px rgba(99, 21, 15, 0.08);
+  background: #ffffff;
+  box-shadow: 0 14px 34px rgba(99, 21, 15, 0.1);
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
-    border-color 0.18s ease;
+    border-color 0.18s ease,
+    filter 0.18s ease;
+}
+
+.action-card::after {
+  content: "→";
+  position: absolute;
+  right: 18px;
+  bottom: 13px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 1.25rem;
+  font-weight: 950;
 }
 
 .action-card:hover,
 .action-card:focus {
-  transform: translateY(-3px);
-  border-color: rgba(159, 38, 29, 0.32);
-  box-shadow: 0 18px 42px rgba(99, 21, 15, 0.15);
+  transform: translateY(-4px);
+  border-color: rgba(159, 38, 29, 0.55);
+  box-shadow: 0 22px 56px rgba(99, 21, 15, 0.22);
+  filter: saturate(1.04);
 }
 
 .action-card span {
-  color: var(--gold-dark);
-  font-size: 0.78rem;
+  color: currentColor;
+  opacity: 0.9;
+  font-size: 0.76rem;
   font-weight: 950;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .action-card strong {
+  max-width: 85%;
+  color: currentColor;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.action-card:nth-child(1) {
+  color: var(--white);
+  border-color: rgba(99, 21, 15, 0.55);
+  background:
+    radial-gradient(circle at top right, rgba(255, 211, 108, 0.42), transparent 10rem),
+    linear-gradient(135deg, var(--red), var(--red-dark));
+  box-shadow: 0 22px 56px rgba(99, 21, 15, 0.28);
+}
+
+.action-card:nth-child(2) {
+  color: var(--black);
+  border-color: rgba(200, 117, 24, 0.6);
+  background:
+    radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 10rem),
+    linear-gradient(135deg, var(--gold), #ffd36c);
+  box-shadow: 0 22px 56px rgba(200, 117, 24, 0.24);
+}
+
+.action-card:nth-child(3) {
   color: var(--red-dark);
-  font-size: 1.18rem;
-  line-height: 1.12;
+  background:
+    radial-gradient(circle at top right, rgba(159, 38, 29, 0.13), transparent 10rem),
+    linear-gradient(135deg, #ffffff, #fff8eb);
+}
+
+.action-card:nth-child(4) {
+  color: var(--green);
+  background:
+    radial-gradient(circle at top right, rgba(37, 84, 61, 0.14), transparent 10rem),
+    linear-gradient(135deg, #ffffff, #fff8eb);
 }
 
 /* Story */
@@ -1280,6 +1344,14 @@ p {
 
   .action-grid {
     grid-template-columns: 1fr;
+  }
+
+  .action-card {
+    min-height: 128px;
+  }
+
+  .action-card strong {
+    font-size: 1.55rem;
   }
 
   .food-card {
