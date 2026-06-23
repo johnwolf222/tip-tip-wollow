@@ -2,1489 +2,544 @@
 
 /*
   Tip Top Willow's Restaurant Website
-  File: styles.css
+  File: script.js
+
   This file controls:
-  - Layout
-  - Colors
-  - Buttons
-  - Mobile design
+  - Header links
+  - Open/closed status
+  - Hero badges
+  - Featured special
+  - Fan favorites
   - Menu tabs
-  - Cards
-  - Forms
-  - Footer
-  - Animations
+  - Reviews
+  - Gallery
+  - FAQs
+  - Hours
+  - Catering note form
+  - Mobile navigation
+  - Scroll reveal animation
+  - Local restaurant SEO schema
 */
 
-:root {
-  --ink: #17130f;
-  --ink-soft: #3a3128;
-  --cream: #fff8eb;
-  --cream-2: #f8ecd6;
-  --cream-3: #f3dfbd;
-  --gold: #f3b333;
-  --gold-dark: #c87518;
-  --red: #9f261d;
-  --red-dark: #63150f;
-  --green: #25543d;
-  --white: #ffffff;
-  --black: #0c0907;
-  --shadow: 0 22px 70px rgba(25, 14, 4, 0.16);
-  --shadow-soft: 0 14px 40px rgba(25, 14, 4, 0.1);
-  --radius-xl: 34px;
-  --radius-lg: 24px;
-  --radius-md: 18px;
-  --radius-sm: 12px;
-  --max-width: 1180px;
-  --header-height: 92px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 120px;
-}
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--ink);
-  background:
-    radial-gradient(circle at top left, rgba(243, 179, 51, 0.22), transparent 34rem),
-    radial-gradient(circle at 100% 20%, rgba(159, 38, 29, 0.12), transparent 28rem),
-    linear-gradient(180deg, #fff8eb 0%, #f8ecd6 54%, #fff8eb 100%);
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.16;
-  z-index: -1;
-  background-image:
-    linear-gradient(45deg, rgba(99, 21, 15, 0.05) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(99, 21, 15, 0.05) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(99, 21, 15, 0.05) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(99, 21, 15, 0.05) 75%);
-  background-position:
-    0 0,
-    0 8px,
-    8px -8px,
-    -8px 0;
-  background-size: 16px 16px;
-}
-
-img {
-  display: block;
-  max-width: 100%;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button,
-input,
-textarea {
-  font: inherit;
-}
-
-button {
-  cursor: pointer;
-}
-
-section {
-  width: min(var(--max-width), calc(100% - 36px));
-  margin: 0 auto;
-  padding: 86px 0;
-}
-
-.skip-link {
-  position: absolute;
-  left: 16px;
-  top: -80px;
-  z-index: 9999;
-  padding: 10px 14px;
-  background: var(--black);
-  color: var(--white);
-  border-radius: 999px;
-  transition: top 0.2s ease;
-}
-
-.skip-link:focus {
-  top: 16px;
-}
-
-/* Header */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255, 248, 235, 0.92);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(99, 21, 15, 0.1);
-}
-
-.top-strip {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 18px;
-  min-height: 36px;
-  padding: 7px 18px;
-  color: var(--black);
-  background: linear-gradient(90deg, var(--gold), #ffd36c);
-  font-size: 0.9rem;
-  font-weight: 800;
-  text-align: center;
-}
-
-.top-strip a {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
-
-.navbar {
-  width: min(var(--max-width), calc(100% - 36px));
-  min-height: 74px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 28px;
-}
-
-.brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-width: max-content;
-}
-
-.brand-mark {
-  width: 48px;
-  height: 48px;
-  display: grid;
-  place-items: center;
-  border-radius: 16px;
-  color: var(--cream);
-  background:
-    linear-gradient(135deg, rgba(243, 179, 51, 0.92), rgba(159, 38, 29, 0.94)),
-    var(--red);
-  box-shadow: 0 12px 30px rgba(159, 38, 29, 0.25);
-  font-size: 0.9rem;
-  font-weight: 950;
-  letter-spacing: 0.04em;
-}
-
-.brand strong {
-  display: block;
-  color: var(--red-dark);
-  font-size: 1.08rem;
-  line-height: 1.1;
-}
-
-.brand small {
-  display: block;
-  color: var(--ink-soft);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 22px;
-  font-size: 0.92rem;
-  font-weight: 850;
-}
-
-.nav-links a:not(.button) {
-  position: relative;
-  color: var(--ink-soft);
-}
-
-.nav-links a:not(.button)::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -7px;
-  width: 0;
-  height: 2px;
-  background: var(--red);
-  transition: width 0.2s ease;
-}
-
-.nav-links a:not(.button):hover::after,
-.nav-links a:not(.button):focus::after {
-  width: 100%;
-}
-
-.nav-toggle {
-  display: none;
-  width: 46px;
-  height: 46px;
-  border: 0;
-  border-radius: 14px;
-  background: var(--red-dark);
-  color: var(--white);
-}
-
-.nav-toggle span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  margin: 5px auto;
-  background: currentColor;
-  border-radius: 99px;
-}
-
-/* Typography */
-
-.eyebrow {
-  margin: 0 0 14px;
-  color: var(--red);
-  font-size: 0.8rem;
-  font-weight: 950;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-h1,
-h2,
-h3 {
-  margin: 0;
-  color: var(--black);
-  line-height: 1.03;
-  letter-spacing: -0.04em;
-}
-
-h1 {
-  max-width: 780px;
-  font-size: clamp(3.1rem, 8vw, 6.8rem);
-}
-
-h2 {
-  font-size: clamp(2.2rem, 4.8vw, 4rem);
-}
-
-h3 {
-  font-size: clamp(1.15rem, 2vw, 1.55rem);
-}
-
-p {
-  margin: 0;
-}
-
-.lead {
-  max-width: 710px;
-  color: var(--ink-soft);
-  font-size: clamp(1.05rem, 2vw, 1.25rem);
-  line-height: 1.75;
-}
-
-.section-heading {
-  max-width: 760px;
-  margin-bottom: 32px;
-}
-
-.section-heading p:not(.eyebrow) {
-  margin-top: 14px;
-  color: var(--ink-soft);
-  font-size: 1.05rem;
-}
-
-.centered {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-.section-copy {
-  display: grid;
-  gap: 20px;
-}
-
-.section-copy p:not(.eyebrow) {
-  color: var(--ink-soft);
-  font-size: 1.04rem;
-}
-
-/* Buttons */
-
-.button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 52px;
-  padding: 14px 22px;
-  border: 2px solid var(--red);
-  border-radius: 999px;
-  color: var(--white);
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  box-shadow: 0 16px 34px rgba(99, 21, 15, 0.22);
-  font-weight: 950;
-  line-height: 1;
-  text-align: center;
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    background 0.18s ease;
-}
-
-.button:hover,
-.button:focus {
-  transform: translateY(-2px);
-  box-shadow: 0 20px 44px rgba(99, 21, 15, 0.3);
-}
-
-.button-secondary {
-  border-color: var(--gold-dark);
-  color: var(--black);
-  background: linear-gradient(135deg, var(--gold), #ffd16a);
-  box-shadow: 0 16px 34px rgba(200, 117, 24, 0.22);
-}
-
-.button-ghost {
-  border-color: rgba(99, 21, 15, 0.24);
-  color: var(--red-dark);
-  background: rgba(255, 248, 235, 0.88);
-  box-shadow: none;
-}
-
-.button-small {
-  min-height: 42px;
-  padding: 11px 16px;
-  font-size: 0.88rem;
-}
-
-.button-full {
-  width: 100%;
-}
-
-/* Hero */
-
-.section-split {
-  display: grid;
-  grid-template-columns: minmax(0, 1.02fr) minmax(310px, 0.82fr);
-  align-items: center;
-  gap: 48px;
-}
-
-.hero {
-  min-height: calc(100vh - var(--header-height));
-  padding-top: 70px;
-}
-
-.hero-copy {
-  display: grid;
-  gap: 24px;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 4px;
-}
-
-.hero-actions .button {
-  min-width: 138px;
-}
-
-.hero-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-.hero-badges span {
-  display: inline-flex;
-  align-items: center;
-  min-height: 36px;
-  padding: 8px 13px;
-  border: 1px solid rgba(99, 21, 15, 0.18);
-  border-radius: 999px;
-  color: var(--red-dark);
-  background: rgba(255, 255, 255, 0.55);
-  font-size: 0.84rem;
-  font-weight: 900;
-}
-
-.hero-card {
-  position: relative;
-  overflow: hidden;
-  min-height: 560px;
-  border: 10px solid rgba(255, 248, 235, 0.84);
-  border-radius: var(--radius-xl);
-  background: var(--cream-3);
-  box-shadow: var(--shadow);
-}
-
-.hero-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.02), transparent 40%),
-    linear-gradient(0deg, rgba(12, 9, 7, 0.62), transparent 38%);
-  pointer-events: none;
-}
-
-.hero-card img {
-  width: 100%;
-  height: 100%;
-  min-height: 560px;
-  object-fit: cover;
-  transform: scale(1.02);
-}
-
-.floating-special {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 24px;
-  z-index: 2;
-  padding: 22px;
-  border: 1px solid rgba(255, 248, 235, 0.34);
-  border-radius: var(--radius-lg);
-  color: var(--cream);
-  background: rgba(23, 19, 15, 0.72);
-  backdrop-filter: blur(16px);
-  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.22);
-}
-
-.floating-special span {
-  display: block;
-  margin-bottom: 8px;
-  color: var(--gold);
-  font-size: 0.74rem;
-  font-weight: 950;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-}
-
-.floating-special strong {
-  display: block;
-  color: var(--white);
-  font-size: clamp(1.26rem, 3vw, 1.8rem);
-  line-height: 1.05;
-}
-
-.floating-special em {
-  color: var(--gold);
-  font-style: normal;
-}
-
-.floating-special p {
-  margin-top: 9px;
-  color: rgba(255, 248, 235, 0.88);
-}
-
-/* Quick actions */
-
-.quick-actions {
-  display: grid;
-  grid-template-columns: 0.66fr 1fr;
-  align-items: stretch;
-  gap: 30px;
-  padding: 38px;
-  border: 2px solid rgba(159, 38, 29, 0.14);
-  border-radius: var(--radius-xl);
-  background:
-    radial-gradient(circle at 85% 10%, rgba(243, 179, 51, 0.34), transparent 22rem),
-    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 235, 0.92)),
-    var(--cream);
-  box-shadow: 0 26px 80px rgba(99, 21, 15, 0.14);
-}
-
-.quick-actions h2 {
-  margin-bottom: 14px;
-}
-
-.quick-actions .lead {
-  color: var(--ink);
-  font-weight: 650;
-}
-
-.action-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.action-card {
-  position: relative;
-  min-height: 176px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 12px;
-  overflow: hidden;
-  padding: 22px;
-  border: 2px solid rgba(99, 21, 15, 0.14);
-  border-radius: var(--radius-lg);
-  background: #ffffff;
-  box-shadow: 0 14px 34px rgba(99, 21, 15, 0.1);
-  isolation: isolate;
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease,
-    filter 0.18s ease;
-}
-
-.action-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.1), transparent 38%),
-    linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 72%);
-  pointer-events: none;
-}
-
-.action-card::after {
-  content: "→";
-  position: absolute;
-  right: 18px;
-  bottom: 13px;
-  width: 34px;
-  height: 34px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  color: currentColor;
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 1.25rem;
-  font-weight: 950;
-}
-
-.action-card:hover,
-.action-card:focus {
-  transform: translateY(-4px);
-  border-color: rgba(159, 38, 29, 0.55);
-  box-shadow: 0 22px 56px rgba(99, 21, 15, 0.22);
-  filter: saturate(1.06);
-}
-
-.action-card span {
-  position: relative;
-  z-index: 2;
-  color: currentColor;
-  opacity: 0.92;
-  font-size: 0.76rem;
-  font-weight: 950;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.action-card strong {
-  position: relative;
-  z-index: 2;
-  max-width: 85%;
-  color: currentColor;
-  font-size: clamp(1.35rem, 2.8vw, 2rem);
-  line-height: 1.05;
-  letter-spacing: -0.045em;
-}
-
-.action-card:nth-child(1) {
-  color: var(--white);
-  border-color: rgba(99, 21, 15, 0.55);
-  background-image: url("assets/ubereats-delivery.jpg");
-  background-position: center;
-  background-size: cover;
-  box-shadow: 0 22px 56px rgba(99, 21, 15, 0.28);
-}
-
-.action-card:nth-child(2) {
-  color: var(--white);
-  border-color: rgba(200, 117, 24, 0.6);
-  background-image: url("assets/doordash-driver.jpg");
-  background-position: center;
-  background-size: cover;
-  box-shadow: 0 22px 56px rgba(200, 117, 24, 0.24);
-}
-
-.action-card:nth-child(3) {
-  color: var(--red-dark);
-  background:
-    radial-gradient(circle at top right, rgba(159, 38, 29, 0.13), transparent 10rem),
-    linear-gradient(135deg, #ffffff, #fff8eb);
-}
-
-.action-card:nth-child(3)::before,
-.action-card:nth-child(4)::before {
-  display: none;
-}
-
-.action-card:nth-child(4) {
-  color: var(--green);
-  background:
-    radial-gradient(circle at top right, rgba(37, 84, 61, 0.14), transparent 10rem),
-    linear-gradient(135deg, #ffffff, #fff8eb);
-}
-
-/* Story */
-
-.story-section {
-  padding-top: 110px;
-}
-
-.image-frame {
-  overflow: hidden;
-  border: 10px solid rgba(255, 255, 255, 0.68);
-  border-radius: var(--radius-xl);
-  background: var(--cream-3);
-  box-shadow: var(--shadow-soft);
-}
-
-.image-frame img {
-  width: 100%;
-  height: 520px;
-  object-fit: cover;
-}
-
-.mini-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 8px;
-}
-
-.mini-stats span {
-  padding: 12px 14px;
-  border: 1px solid rgba(99, 21, 15, 0.15);
-  border-radius: 999px;
-  color: var(--green);
-  background: rgba(255, 255, 255, 0.56);
-  font-size: 0.86rem;
-  font-weight: 950;
-}
-
-/* Cards */
-
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.food-card {
-  overflow: hidden;
-  border: 1px solid rgba(99, 21, 15, 0.1);
-  border-radius: var(--radius-xl);
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-}
-
-.food-card img {
-  width: 100%;
-  height: 290px;
-  object-fit: cover;
-}
-
-.food-card-content {
-  padding: 22px;
-}
-
-.food-card-content h3 {
-  color: var(--red-dark);
-  margin-bottom: 10px;
-}
-
-.food-card-content p {
-  color: var(--ink-soft);
-}
-
-/* Menu */
-
-.menu-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 24px;
-}
-
-.menu-tab {
-  min-height: 44px;
-  padding: 10px 16px;
-  border: 1px solid rgba(99, 21, 15, 0.16);
-  border-radius: 999px;
-  color: var(--ink-soft);
-  background: rgba(255, 255, 255, 0.7);
-  font-weight: 950;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    transform 0.18s ease,
-    border-color 0.18s ease;
-}
-
-.menu-tab:hover,
-.menu-tab:focus {
-  transform: translateY(-1px);
-  border-color: rgba(159, 38, 29, 0.34);
-}
-
-.menu-tab.active {
-  color: var(--white);
-  border-color: var(--red);
-  background: linear-gradient(135deg, var(--red), var(--red-dark));
-  box-shadow: 0 12px 26px rgba(99, 21, 15, 0.18);
-}
-
-.menu-panel {
-  padding: 30px;
-  border: 1px solid rgba(99, 21, 15, 0.12);
-  border-radius: var(--radius-xl);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(255, 248, 235, 0.84)),
-    var(--cream);
-  box-shadow: var(--shadow-soft);
-}
-
-.menu-panel-heading {
-  display: grid;
-  gap: 8px;
-  margin-bottom: 24px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid rgba(99, 21, 15, 0.12);
-}
-
-.menu-panel-heading h3 {
-  color: var(--red-dark);
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
-}
-
-.menu-panel-heading p {
-  color: var(--ink-soft);
-}
-
-.menu-items {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.menu-item {
-  padding: 20px;
-  border: 1px solid rgba(99, 21, 15, 0.1);
-  border-radius: var(--radius-lg);
-  background: #ffffff;
-  box-shadow: 0 10px 26px rgba(99, 21, 15, 0.07);
-}
-
-.menu-item-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 9px;
-}
-
-.menu-item h3 {
-  color: var(--black);
-  font-size: 1.18rem;
-  letter-spacing: -0.02em;
-}
-
-.price {
-  min-width: max-content;
-  color: var(--red);
-  font-weight: 950;
-}
-
-.menu-item p {
-  color: var(--ink-soft);
-  font-size: 0.96rem;
-}
-
-/* Catering */
-
-.catering-section {
-  align-items: start;
-}
-
-.check-list {
-  display: grid;
-  gap: 11px;
-  margin: 4px 0 8px;
-  padding: 0;
-  list-style: none;
-}
-
-.check-list li {
-  position: relative;
-  padding-left: 32px;
-  color: var(--ink-soft);
-  font-weight: 800;
-}
-
-.check-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: -1px;
-  width: 22px;
-  height: 22px;
-  display: grid;
-  place-items: center;
-  border-radius: 999px;
-  color: var(--white);
-  background: var(--green);
-  font-size: 0.78rem;
-  font-weight: 950;
-}
-
-.catering-form {
-  display: grid;
-  gap: 15px;
-  padding: 28px;
-  border: 1px solid rgba(99, 21, 15, 0.12);
-  border-radius: var(--radius-xl);
-  background: var(--white);
-  box-shadow: var(--shadow-soft);
-}
-
-.catering-form h3 {
-  color: var(--red-dark);
-}
-
-.catering-form p {
-  color: var(--ink-soft);
-}
-
-.catering-form label {
-  display: grid;
-  gap: 7px;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
-  font-weight: 950;
-}
-
-.catering-form input,
-.catering-form textarea {
-  width: 100%;
-  border: 1px solid rgba(99, 21, 15, 0.18);
-  border-radius: 16px;
-  padding: 13px 14px;
-  color: var(--ink);
-  background: var(--cream);
-  outline: none;
-  transition:
-    border-color 0.16s ease,
-    box-shadow 0.16s ease,
-    background 0.16s ease;
-}
-
-.catering-form textarea {
-  resize: vertical;
-}
-
-.catering-form input:focus,
-.catering-form textarea:focus {
-  border-color: var(--red);
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(159, 38, 29, 0.1);
-}
-
-.form-result {
-  white-space: pre-wrap;
-  margin: 0;
-  padding: 16px;
-  border-radius: var(--radius-md);
-  color: var(--cream);
-  background: var(--black);
-  font-size: 0.88rem;
-  overflow: auto;
-}
-
-/* Reviews */
-
-.review-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.review-card {
-  min-height: 210px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 22px;
-  padding: 24px;
-  border: 1px solid rgba(99, 21, 15, 0.1);
-  border-radius: var(--radius-xl);
-  background: #ffffff;
-  box-shadow: var(--shadow-soft);
-}
-
-.review-card p {
-  color: var(--ink-soft);
-  font-size: 1.02rem;
-}
-
-.review-card strong {
-  color: var(--red-dark);
-}
-
-/* Gallery */
-
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr 1fr;
-  grid-auto-rows: 230px;
-  gap: 16px;
-}
-
-.gallery-item {
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-  background: var(--cream-3);
-  box-shadow: 0 12px 30px rgba(99, 21, 15, 0.08);
-}
-
-.gallery-item:nth-child(1) {
-  grid-row: span 2;
-}
-
-.gallery-item:nth-child(4) {
-  grid-column: span 2;
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
-}
-
-.gallery-item:hover img,
-.gallery-item:focus img {
-  transform: scale(1.055);
-  filter: saturate(1.08);
-}
-
-/* FAQ */
-
-.faq-list {
-  max-width: 890px;
-  margin: 0 auto;
-  display: grid;
-  gap: 12px;
-}
-
-.faq-item {
-  border: 1px solid rgba(99, 21, 15, 0.12);
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 10px 24px rgba(99, 21, 15, 0.07);
-}
-
-.faq-item summary {
-  padding: 20px 22px;
-  cursor: pointer;
-  color: var(--red-dark);
-  list-style: none;
-}
-
-.faq-item summary::-webkit-details-marker {
-  display: none;
-}
-
-.faq-item summary::after {
-  content: "+";
-  float: right;
-  color: var(--red);
-  font-size: 1.3rem;
-  font-weight: 950;
-}
-
-.faq-item[open] summary::after {
-  content: "–";
-}
-
-.faq-item p {
-  padding: 0 22px 22px;
-  color: var(--ink-soft);
-}
-
-/* Visit */
-
-.visit-section {
-  align-items: start;
-}
-
-.visit-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 13px;
-  margin-top: 10px;
-}
-
-.hours-card {
-  padding: 28px;
-  border: 1px solid rgba(99, 21, 15, 0.12);
-  border-radius: var(--radius-xl);
-  background:
-    radial-gradient(circle at top right, rgba(243, 179, 51, 0.2), transparent 11rem),
-    #ffffff;
-  box-shadow: var(--shadow-soft);
-}
-
-.hours-card h3 {
-  margin-bottom: 18px;
-  color: var(--red-dark);
-}
-
-.hours-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(99, 21, 15, 0.1);
-}
-
-.hours-row strong {
-  color: var(--black);
-}
-
-.hours-row span {
-  color: var(--ink-soft);
-  text-align: right;
-  font-weight: 800;
-}
-
-.small-note {
-  margin-top: 16px;
-  color: var(--ink-soft);
-  font-size: 0.9rem;
-}
+const data = window.RESTAURANT_DATA;
 
-/* Footer */
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => Array.from(document.querySelectorAll(selector));
 
-.site-footer {
-  width: min(var(--max-width), calc(100% - 36px));
-  margin: 40px auto 0;
-  padding: 36px 0 96px;
-  display: grid;
-  grid-template-columns: 1.3fr 1fr 0.8fr;
-  gap: 28px;
-  color: rgba(255, 248, 235, 0.82);
-  background: transparent;
-}
-
-.site-footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(99, 21, 15, 0.14);
-}
-
-.site-footer strong {
-  display: block;
-  margin-bottom: 10px;
-  color: var(--red-dark);
-}
-
-.site-footer p {
-  color: var(--ink-soft);
-}
-
-.site-footer a {
-  color: var(--red-dark);
-  font-weight: 900;
-}
-
-.footer-bottom {
-  grid-column: 1 / -1;
-  padding-top: 18px;
-  border-top: 1px solid rgba(99, 21, 15, 0.12);
-}
-
-/* Mobile sticky */
-
-.mobile-sticky {
-  position: fixed;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  z-index: 1100;
-  display: none;
-  grid-template-columns: repeat(4, 1fr);
-  overflow: hidden;
-  border: 1px solid rgba(255, 248, 235, 0.28);
-  border-radius: 999px;
-  background: rgba(23, 19, 15, 0.94);
-  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(16px);
-}
-
-.mobile-sticky a {
-  min-height: 50px;
-  display: grid;
-  place-items: center;
-  color: var(--cream);
-  font-size: 0.82rem;
-  font-weight: 950;
-}
-
-.mobile-sticky a:not(:last-child) {
-  border-right: 1px solid rgba(255, 248, 235, 0.12);
-}
-
-.mobile-sticky a:hover,
-.mobile-sticky a:focus {
-  background: rgba(243, 179, 51, 0.16);
-}
+let activeMenuIndex = 0;
 
-/* Reveal animation */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
+function safeText(value) {
+  return value === undefined || value === null ? "" : String(value);
 }
-
-/* Responsive */
-
-@media (max-width: 980px) {
-  :root {
-    --header-height: 82px;
-  }
-
-  section {
-    padding: 68px 0;
-  }
-
-  .section-split,
-  .quick-actions {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: auto;
-    padding-top: 52px;
-  }
-
-  .hero-card,
-  .hero-card img {
-    min-height: 460px;
-  }
-
-  .card-grid,
-  .review-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .food-card {
-    display: grid;
-    grid-template-columns: 0.9fr 1fr;
-  }
-
-  .food-card img {
-    height: 100%;
-    min-height: 260px;
-  }
-
-  .menu-items {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .gallery-item:nth-child(1),
-  .gallery-item:nth-child(4) {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .site-footer {
-    grid-template-columns: 1fr;
-    padding-bottom: 110px;
-  }
-
-  .nav-toggle {
-    display: block;
-  }
-
-  .nav-links {
-    position: absolute;
-    left: 18px;
-    right: 18px;
-    top: calc(100% + 10px);
-    display: none;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-    padding: 14px;
-    border: 1px solid rgba(99, 21, 15, 0.12);
-    border-radius: 24px;
-    background: rgba(255, 248, 235, 0.98);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .nav-links.open {
-    display: flex;
-  }
-
-  .nav-links a {
-    padding: 13px 12px;
-    border-radius: 14px;
-  }
-
-  .nav-links a:not(.button)::after {
-    display: none;
-  }
 
-  .nav-links .button {
-    margin-top: 8px;
-  }
+function setText(selector, value) {
+  const element = $(selector);
 
-  .mobile-sticky {
-    display: grid;
+  if (element) {
+    element.textContent = safeText(value);
   }
 }
 
-@media (max-width: 720px) {
-  body {
-    background:
-      radial-gradient(circle at top left, rgba(243, 179, 51, 0.2), transparent 26rem),
-      linear-gradient(180deg, #fff8eb 0%, #f8ecd6 100%);
-  }
+function setHtml(selector, value) {
+  const element = $(selector);
 
-  section {
-    width: min(100% - 24px, var(--max-width));
-    padding: 54px 0;
-  }
-
-  .top-strip {
-    flex-direction: column;
-    gap: 1px;
-    min-height: 48px;
-    padding: 8px 12px;
-    font-size: 0.78rem;
-  }
-
-  .navbar {
-    width: min(100% - 24px, var(--max-width));
-    min-height: 66px;
-  }
-
-  .brand-mark {
-    width: 42px;
-    height: 42px;
-    border-radius: 14px;
-  }
-
-  .brand strong {
-    font-size: 0.98rem;
-  }
-
-  .brand small {
-    font-size: 0.68rem;
-  }
-
-  .nav-toggle {
-    width: 42px;
-    height: 42px;
-  }
-
-  .hero {
-    padding-top: 38px;
-  }
-
-  h1 {
-    font-size: clamp(2.75rem, 15vw, 4.5rem);
-  }
-
-  h2 {
-    font-size: clamp(2rem, 10vw, 3.1rem);
-  }
-
-  .hero-actions,
-  .visit-actions {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .button {
-    width: 100%;
-  }
-
-  .hero-card,
-  .hero-card img {
-    min-height: 430px;
-  }
-
-  .hero-card {
-    border-width: 7px;
-    border-radius: 28px;
-  }
-
-  .floating-special {
-    left: 14px;
-    right: 14px;
-    bottom: 14px;
-    padding: 18px;
-  }
-
-  .quick-actions {
-    width: min(100% - 24px, var(--max-width));
-    padding: 24px;
-    border-radius: 28px;
-  }
-
-  .action-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .action-card {
-    min-height: 152px;
-  }
-
-  .action-card strong {
-    font-size: 1.55rem;
-  }
-
-  .food-card {
-    display: block;
-  }
-
-  .food-card img {
-    height: 265px;
-    min-height: auto;
-  }
-
-  .menu-panel {
-    padding: 20px;
-    border-radius: 28px;
-  }
-
-  .menu-tabs {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .menu-tab {
-    width: 100%;
-    font-size: 0.82rem;
-  }
-
-  .menu-item-top {
-    display: grid;
-    gap: 4px;
-  }
-
-  .price {
-    min-width: 0;
-  }
-
-  .catering-form,
-  .hours-card {
-    padding: 22px;
-    border-radius: 28px;
-  }
-
-  .gallery-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 250px;
-  }
-
-  .hours-row {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .hours-row span {
-    text-align: left;
+  if (element) {
+    element.innerHTML = safeText(value);
   }
 }
 
-@media (max-width: 420px) {
-  section {
-    width: min(100% - 18px, var(--max-width));
-  }
+function setHref(selector, value) {
+  const element = $(selector);
 
-  .navbar {
-    width: min(100% - 18px, var(--max-width));
-  }
-
-  .brand {
-    gap: 9px;
-  }
-
-  .brand small {
-    display: none;
-  }
-
-  .menu-tabs {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card,
-  .hero-card img {
-    min-height: 390px;
-  }
-
-  .mobile-sticky {
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-  }
-
-  .mobile-sticky a {
-    min-height: 48px;
-    font-size: 0.76rem;
+  if (element && value) {
+    element.href = value;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+function setImage(selector, src, alt) {
+  const image = $(selector);
+
+  if (image && src) {
+    image.src = src;
+
+    if (alt) {
+      image.alt = alt;
+    }
+  }
+}
+
+function escapeHtml(value) {
+  return safeText(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function getTodayHours() {
+  const now = new Date();
+  const dayName = now.toLocaleDateString("en-US", { weekday: "long" });
+
+  if (!data || !Array.isArray(data.hours)) {
+    return {
+      dayName,
+      today: null
+    };
   }
 
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
-    animation: none !important;
+  return {
+    dayName,
+    today: data.hours.find((entry) => entry.day === dayName) || null
+  };
+}
+
+function setLinks() {
+  if (!data) return;
+
+  document.title = `${data.name} | Authentic Caribbean Restaurant in Jonesboro, GA`;
+
+  const phoneLinks = [
+    "#header-call",
+    "#hero-call",
+    "#call-link",
+    "#catering-call",
+    "#visit-call",
+    "#footer-phone"
+  ];
+
+  phoneLinks.forEach((selector) => {
+    const link = $(selector);
+
+    if (!link) return;
+
+    link.href = data.phoneHref;
+    link.setAttribute("aria-label", `Call Tip Top Willow’s at ${data.phoneDisplay}`);
+
+    if (selector === "#header-call") {
+      link.textContent = `Call Ahead: ${data.phoneDisplay}`;
+    }
+
+    if (selector === "#footer-phone") {
+      link.textContent = data.phoneDisplay;
+    }
+  });
+
+  setHref("#uber-link", data.orderLinks?.uberEats);
+  setHref("#doordash-link", data.orderLinks?.doorDash);
+  setHref("#directions-link", data.mapsHref);
+  setHref("#visit-directions", data.mapsHref);
+  setHref("#mobile-directions", data.mapsHref);
+  setHref("#footer-instagram", data.social?.instagram);
+  setHref("#footer-facebook", data.social?.facebook);
+
+  setText("#footer-address", data.address);
+  setText("#visit-address", data.address);
+  setText("#hero-pitch", data.shortPitch);
+  setText("#story-copy", data.story);
+  setText("#year", new Date().getFullYear());
+
+  setImage("#hero-image", data.images?.hero, `${data.name} Caribbean plate`);
+  setImage("#storefront-image", data.images?.storefront, `${data.name} storefront`);
+}
+
+function openStatus() {
+  if (!data) return;
+
+  const status = $("#open-status");
+  if (!status) return;
+
+  const { dayName, today } = getTodayHours();
+
+  if (!today || safeText(today.time).toLowerCase().includes("closed")) {
+    status.textContent = "Closed today";
+    return;
   }
 
-  .reveal {
-    opacity: 1;
-    transform: none;
+  status.textContent = `Open ${dayName} • ${today.time}`;
+}
+
+function renderBadges() {
+  if (!data) return;
+
+  const container = $("#hero-badges");
+  if (!container) return;
+
+  const badges = Array.isArray(data.heroBadges) ? data.heroBadges : [];
+
+  container.innerHTML = badges
+    .map((badge) => `<span>${escapeHtml(badge)}</span>`)
+    .join("");
+}
+
+function renderFeature() {
+  if (!data) return;
+
+  const feature = $("#feature-special");
+  if (!feature) return;
+
+  const special = data.optionalPromo?.enabled ? data.optionalPromo : data.featureSpecial;
+
+  if (!special) {
+    feature.innerHTML = "";
+    return;
   }
+
+  const eyebrow = special.eyebrow || "Featured";
+  const price = special.price ? `<em>${escapeHtml(special.price)}</em>` : "";
+
+  feature.innerHTML = `
+    <span>${escapeHtml(eyebrow)}</span>
+    <strong>${escapeHtml(special.title)} ${price}</strong>
+    <p>${escapeHtml(special.description)}</p>
+  `;
+}
+
+function renderFavorites() {
+  if (!data) return;
+
+  const grid = $("#favorites-grid");
+  if (!grid) return;
+
+  const favorites = Array.isArray(data.favorites) ? data.favorites : [];
+
+  grid.innerHTML = favorites
+    .map((item) => {
+      const imageSrc = data.images?.[item.imageKey] || "";
+      const name = escapeHtml(item.name);
+      const description = escapeHtml(item.description);
+
+      return `
+        <article class="food-card reveal">
+          <img src="${imageSrc}" alt="${name} plate" loading="lazy" />
+          <div class="food-card-content">
+            <h3>${name}</h3>
+            <p>${description}</p>
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderMenuTabs() {
+  if (!data) return;
+
+  const tabsContainer = $("#menu-tabs");
+  if (!tabsContainer) return;
+
+  const menuSections = Array.isArray(data.menu) ? data.menu : [];
+
+  if (activeMenuIndex >= menuSections.length) {
+    activeMenuIndex = 0;
+  }
+
+  tabsContainer.innerHTML = menuSections
+    .map((section, index) => {
+      const activeClass = index === activeMenuIndex ? "active" : "";
+
+      return `
+        <button class="menu-tab ${activeClass}" type="button" data-menu-index="${index}">
+          ${escapeHtml(section.category)}
+        </button>
+      `;
+    })
+    .join("");
+
+  $$(".menu-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      activeMenuIndex = Number(tab.dataset.menuIndex);
+      renderMenuTabs();
+      renderMenuPanel();
+    });
+  });
+}
+
+function renderMenuPanel() {
+  if (!data) return;
+
+  const panel = $("#menu-panel");
+  if (!panel) return;
+
+  const menuSections = Array.isArray(data.menu) ? data.menu : [];
+  const section = menuSections[activeMenuIndex];
+
+  if (!section) {
+    panel.innerHTML = "";
+    return;
+  }
+
+  const items = Array.isArray(section.items) ? section.items : [];
+
+  const menuItems = items
+    .map((item) => {
+      return `
+        <article class="menu-item reveal visible">
+          <div class="menu-item-top">
+            <h3>${escapeHtml(item.name)}</h3>
+            <span class="price">${escapeHtml(item.price)}</span>
+          </div>
+          <p>${escapeHtml(item.description)}</p>
+        </article>
+      `;
+    })
+    .join("");
+
+  panel.innerHTML = `
+    <div class="menu-panel-heading">
+      <h3>${escapeHtml(section.category)}</h3>
+      <p>${escapeHtml(section.note || "")}</p>
+    </div>
+    <div class="menu-items">${menuItems}</div>
+  `;
+}
+
+function renderReviews() {
+  if (!data) return;
+
+  const grid = $("#review-grid");
+  if (!grid) return;
+
+  const reviews = Array.isArray(data.reviews) ? data.reviews : [];
+
+  grid.innerHTML = reviews
+    .map((review) => {
+      return `
+        <article class="review-card reveal">
+          <p>“${escapeHtml(review.quote)}”</p>
+          <strong>— ${escapeHtml(review.name)}</strong>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderGallery() {
+  if (!data) return;
+
+  const grid = $("#gallery-grid");
+  if (!grid) return;
+
+  const gallery = [
+    {
+      src: data.images?.hero,
+      alt: "Brown stew chicken"
+    },
+    {
+      src: data.images?.oxtails,
+      alt: "Oxtail plate with rice and plantains"
+    },
+    {
+      src: data.images?.jerkChicken,
+      alt: "Jerk chicken plate with rice, cabbage, and plantains"
+    },
+    {
+      src: data.images?.curryGoat,
+      alt: "Curry goat plate"
+    },
+    {
+      src: data.images?.storefront,
+      alt: "Tip Top Willow’s storefront"
+    }
+  ].filter((image) => image.src);
+
+  grid.innerHTML = gallery
+    .map((image) => {
+      return `
+        <a class="gallery-item reveal" href="${image.src}" target="_blank" rel="noopener">
+          <img src="${image.src}" alt="${escapeHtml(image.alt)}" loading="lazy" />
+        </a>
+      `;
+    })
+    .join("");
+}
+
+function renderFaqs() {
+  if (!data) return;
+
+  const list = $("#faq-list");
+  if (!list) return;
+
+  const faqs = Array.isArray(data.faqs) ? data.faqs : [];
+
+  list.innerHTML = faqs
+    .map((item) => {
+      return `
+        <details class="faq-item reveal">
+          <summary><strong>${escapeHtml(item.q)}</strong></summary>
+          <p>${escapeHtml(item.a)}</p>
+        </details>
+      `;
+    })
+    .join("");
+}
+
+function renderHours() {
+  if (!data) return;
+
+  const list = $("#hours-list");
+  if (!list) return;
+
+  const hours = Array.isArray(data.hours) ? data.hours : [];
+
+  list.innerHTML = hours
+    .map((entry) => {
+      return `
+        <div class="hours-row">
+          <strong>${escapeHtml(entry.day)}</strong>
+          <span>${escapeHtml(entry.time)}</span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function cateringForm() {
+  if (!data) return;
+
+  const form = $("#catering-form");
+  const result = $("#form-result");
+
+  if (!form || !result) return;
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+
+    const note = [
+      "Catering inquiry for Tip Top Willow’s",
+      "",
+      `Name: ${formData.get("name") || ""}`,
+      `Phone: ${formData.get("phone") || ""}`,
+      `Event date: ${formData.get("date") || ""}`,
+      `Guest count: ${formData.get("guests") || ""}`,
+      `Food interests: ${formData.get("message") || ""}`,
+      "",
+      `Call: ${data.phoneDisplay}`
+    ].join("\n");
+
+    result.hidden = false;
+    result.textContent = note;
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(note).catch(() => {});
+    }
+  });
+}
+
+function navigation() {
+  const toggle = $(".nav-toggle");
+  const links = $("[data-nav-links]");
+
+  if (!toggle || !links) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = links.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  links.addEventListener("click", (event) => {
+    const clickedLink = event.target.closest("a");
+
+    if (clickedLink) {
+      links.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+}
+
+function revealOnScroll() {
+  const items = $$(".reveal");
+
+  if (!items.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    items.forEach((item) => item.classList.add("visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  items.forEach((item) => observer.observe(item));
+}
+
+function schemaJson() {
+  if (!data) return;
+
+  const schemaTarget = $("#schema-json");
+  if (!schemaTarget) return;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    name: data.legalName,
+    description: data.shortPitch,
+    telephone: data.phoneDisplay,
+    servesCuisine: ["Caribbean", "Jamaican", "Guyanese"],
+    priceRange: "$$",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "8514 GA-85",
+      addressLocality: "Jonesboro",
+      addressRegion: "GA",
+      postalCode: "30238",
+      addressCountry: "US"
+    },
+    url: "https://tiptopwillows.com/",
+    sameAs: [data.social?.instagram, data.social?.facebook].filter(Boolean),
+    image: [data.images?.hero, data.images?.oxtails, data.images?.jerkChicken].filter(Boolean),
+    openingHoursSpecification: Array.isArray(data.hours)
+      ? data.hours
+          .filter((entry) => !safeText(entry.time).toLowerCase().includes("closed"))
+          .map((entry) => ({
+            "@type": "OpeningHoursSpecification",
+            dayOfWeek: entry.day,
+            opens: "11:00",
+            closes:
+              entry.day === "Sunday" && safeText(entry.time).includes("7:00")
+                ? "19:00"
+                : "20:00"
+          }))
+      : []
+  };
+
+  schemaTarget.textContent = JSON.stringify(schema, null, 2);
+}
+
+function init() {
+  if (!data) {
+    console.error("Restaurant data is missing. Make sure data.js loads before script.js.");
+    return;
+  }
+
+  setLinks();
+  openStatus();
+  renderBadges();
+  renderFeature();
+  renderFavorites();
+  renderMenuTabs();
+  renderMenuPanel();
+  renderReviews();
+  renderGallery();
+  renderFaqs();
+  renderHours();
+  cateringForm();
+  navigation();
+  schemaJson();
+  revealOnScroll();
 }
 
 init();
