@@ -34,6 +34,7 @@ function safeText(value) {
 
 function setText(selector, value) {
   const element = $(selector);
+
   if (element) {
     element.textContent = safeText(value);
   }
@@ -41,6 +42,7 @@ function setText(selector, value) {
 
 function setHtml(selector, value) {
   const element = $(selector);
+
   if (element) {
     element.innerHTML = safeText(value);
   }
@@ -48,6 +50,7 @@ function setHtml(selector, value) {
 
 function setHref(selector, value) {
   const element = $(selector);
+
   if (element && value) {
     element.href = value;
   }
@@ -55,8 +58,10 @@ function setHref(selector, value) {
 
 function setImage(selector, src, alt) {
   const image = $(selector);
+
   if (image && src) {
     image.src = src;
+
     if (alt) {
       image.alt = alt;
     }
@@ -109,12 +114,13 @@ function setLinks() {
     if (!link) return;
 
     link.href = data.phoneHref;
+    link.setAttribute("aria-label", `Call Tip Top Willow’s at ${data.phoneDisplay}`);
 
     if (selector === "#header-call") {
       link.textContent = `Call Ahead: ${data.phoneDisplay}`;
     }
 
-    if (selector === "#call-link" || selector === "#footer-phone") {
+    if (selector === "#footer-phone") {
       link.textContent = data.phoneDisplay;
     }
   });
