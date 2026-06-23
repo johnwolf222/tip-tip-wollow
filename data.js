@@ -51,7 +51,7 @@ window.RESTAURANT_DATA = {
     },
     {
       day: "Sunday",
-      time: "Closed"
+      time: "11:00 AM – 7:00 PM"
     }
   ],
 
@@ -59,8 +59,8 @@ window.RESTAURANT_DATA = {
     "Hours may change around holidays, events, or sell-out days. Call ahead to confirm availability.",
 
   social: {
-    instagram: "https://www.instagram.com/",
-    facebook: "https://www.facebook.com/"
+    instagram: "https://www.instagram.com/tiptopwillows",
+    facebook: "https://www.facebook.com/tiptop.willows"
   },
 
   orderLinks: {
