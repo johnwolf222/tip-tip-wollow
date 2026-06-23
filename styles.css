@@ -1395,21 +1395,20 @@ p {
     width: min(100% - 18px, var(--max-width));
   }
 
-  .brand {
-    gap: 9px;
-  }
-
-  .brand small {
-    display: none;
-  }
-
-  .menu-tabs {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card {
-    height: 380px;
-  }
+  .brand-mark {
+  width: 68px;
+  height: 50px;
+  display: block;
+  overflow: hidden;
+  border-radius: 999px;
+  color: transparent;
+  background-image: url("assets/logo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 12px 26px rgba(101, 21, 15, 0.2);
+  font-size: 0;
+}
 
   .mobile-sticky {
     left: 8px;
