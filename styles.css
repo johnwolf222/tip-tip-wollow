@@ -526,22 +526,34 @@ p {
 
 .action-card {
   position: relative;
-  min-height: 150px;
+  min-height: 176px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 22px;
+  justify-content: flex-end;
+  gap: 12px;
   overflow: hidden;
   padding: 22px;
   border: 2px solid rgba(99, 21, 15, 0.14);
   border-radius: var(--radius-lg);
   background: #ffffff;
   box-shadow: 0 14px 34px rgba(99, 21, 15, 0.1);
+  isolation: isolate;
   transition:
     transform 0.18s ease,
     box-shadow 0.18s ease,
     border-color 0.18s ease,
     filter 0.18s ease;
+}
+
+.action-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.1), transparent 38%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1) 72%);
+  pointer-events: none;
 }
 
 .action-card::after {
@@ -554,8 +566,8 @@ p {
   display: grid;
   place-items: center;
   border-radius: 999px;
-  color: inherit;
-  background: rgba(255, 255, 255, 0.16);
+  color: currentColor;
+  background: rgba(255, 255, 255, 0.18);
   font-size: 1.25rem;
   font-weight: 950;
 }
@@ -565,12 +577,14 @@ p {
   transform: translateY(-4px);
   border-color: rgba(159, 38, 29, 0.55);
   box-shadow: 0 22px 56px rgba(99, 21, 15, 0.22);
-  filter: saturate(1.04);
+  filter: saturate(1.06);
 }
 
 .action-card span {
+  position: relative;
+  z-index: 2;
   color: currentColor;
-  opacity: 0.9;
+  opacity: 0.92;
   font-size: 0.76rem;
   font-weight: 950;
   letter-spacing: 0.15em;
@@ -578,6 +592,8 @@ p {
 }
 
 .action-card strong {
+  position: relative;
+  z-index: 2;
   max-width: 85%;
   color: currentColor;
   font-size: clamp(1.35rem, 2.8vw, 2rem);
@@ -588,18 +604,18 @@ p {
 .action-card:nth-child(1) {
   color: var(--white);
   border-color: rgba(99, 21, 15, 0.55);
-  background:
-    radial-gradient(circle at top right, rgba(255, 211, 108, 0.42), transparent 10rem),
-    linear-gradient(135deg, var(--red), var(--red-dark));
+  background-image: url("assets/ubereats-delivery.jpg");
+  background-position: center;
+  background-size: cover;
   box-shadow: 0 22px 56px rgba(99, 21, 15, 0.28);
 }
 
 .action-card:nth-child(2) {
-  color: var(--black);
+  color: var(--white);
   border-color: rgba(200, 117, 24, 0.6);
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.5), transparent 10rem),
-    linear-gradient(135deg, var(--gold), #ffd36c);
+  background-image: url("assets/doordash-driver.jpg");
+  background-position: center;
+  background-size: cover;
   box-shadow: 0 22px 56px rgba(200, 117, 24, 0.24);
 }
 
@@ -608,6 +624,11 @@ p {
   background:
     radial-gradient(circle at top right, rgba(159, 38, 29, 0.13), transparent 10rem),
     linear-gradient(135deg, #ffffff, #fff8eb);
+}
+
+.action-card:nth-child(3)::before,
+.action-card:nth-child(4)::before {
+  display: none;
 }
 
 .action-card:nth-child(4) {
@@ -1347,7 +1368,7 @@ p {
   }
 
   .action-card {
-    min-height: 128px;
+    min-height: 152px;
   }
 
   .action-card strong {
